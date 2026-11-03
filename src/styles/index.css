@@ -1,0 +1,66 @@
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { background: #050807; color-scheme: dark; scroll-behavior: smooth; }
+  body {
+    @apply bg-void text-signal font-sans font-light antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  ::selection { background: #1FAF6B; color: #050807; }
+  :focus-visible { outline: 2px solid #5CF2A0; outline-offset: 3px; border-radius: 4px; }
+  [dir='rtl'] body, [lang='ar'] { font-family: 'IBM Plex Sans Arabic', Inter, sans-serif; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-page px-5 sm:px-8 lg:px-12; }
+  .t-hero { @apply font-display font-bold tracking-tightest leading-[0.98]; font-size: clamp(2.9rem, 7.2vw, 7.4rem); }
+  .t-1 { @apply font-display font-bold tracking-tightest leading-[1.02]; font-size: clamp(2.3rem, 5vw, 4.9rem); }
+  .t-2 { @apply font-display font-bold tracking-[-0.025em] leading-[1.08]; font-size: clamp(1.8rem, 3.2vw, 3rem); }
+  .t-3 { @apply font-display font-semibold tracking-[-0.01em] leading-tight; font-size: clamp(1.2rem, 1.6vw, 1.5rem); }
+  .lead { @apply text-[1.15rem] sm:text-[1.3rem] leading-[1.6] text-[#C9D4CE] font-light; max-width: 38em; }
+  .body { @apply text-[1.02rem] leading-[1.7] text-[#B4C1BA]; max-width: 36em; }
+  .meta { @apply text-sm text-mute font-normal; }
+  .rule { @apply border-t border-line; }
+
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-display text-[0.98rem] font-semibold transition-[background,color,box-shadow,transform] duration-300;
+  }
+  .btn-primary {
+    @apply bg-signal text-void;
+    box-shadow: 0 0 0 1px rgba(92,242,160,.35), 0 8px 40px -8px rgba(31,175,107,.55);
+  }
+  .btn-primary:hover { @apply bg-white; box-shadow: 0 0 0 1px rgba(92,242,160,.8), 0 10px 60px -6px rgba(92,242,160,.6); }
+  .btn-ghost { @apply text-signal; box-shadow: inset 0 0 0 1px rgba(244,247,245,.22); }
+  .btn-ghost:hover { box-shadow: inset 0 0 0 1px rgba(92,242,160,.7); }
+
+  .text-link { @apply text-signal underline decoration-emerald/60 underline-offset-[6px] transition-colors hover:decoration-mint; }
+}
+
+/* Grain keeps the large dark areas from banding on cheap screens. */
+.grain::after {
+  content: '';
+  position: fixed; inset: -50%;
+  pointer-events: none; z-index: 60; opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.reveal-mask { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; }
+.reveal-mask > span { display: inline-block; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+@keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
